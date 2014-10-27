@@ -11,13 +11,16 @@
 
 @interface PersonViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property NSArray *people;
+
 @end
 
 @implementation PersonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self refreshDisplay]; //step 5 so it would automatically pull parse data
 }
 
 - (IBAction)onAddPersonButtonTapped:(id)sender {
@@ -39,23 +42,29 @@
 
 -(void)refreshDisplay
 {
-    
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    PFQuery *query = [PFQuery queryWithClassName:@"Person"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.userInfo);
+            self.people = [NSArray array]; //5 - want to set to null so app doesn't crash, app expects some array back after this method
+        }
+        else {
+            self.people = objects;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.people.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell"];
+    PFObject *person = [self.people objectAtIndex:indexPath.row];
+    cell.textLabel.text = person[@"name"]; //same as if we had said objectForKey since we're calling from dicitonary
     return cell;
 }
 @end

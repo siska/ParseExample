@@ -33,8 +33,12 @@ step 3
  - we imported the Parse/Parse.h into the PersonVC
  - we then implemented within onAddPersonButtonTapped the ability to save something to our Parse account - when i ran the app and then clicked the add person button, it added a person with the info I said in the app to the parse account - a few important things with that - seems like we could run it a million times and get a million of the same people - we couldn't find a way to check to see if something was unique automatically within parse - may be something that has to be checked by the database or may have to research that a bit more to see if it's possible through parse
  - it will then refresh the display, which we called, created, but haven't put anything in yet
+ - *** another important note, to get the age to be stored within parse, we're storing it within a dictionary - you can't store primitive data types within a dictionary, so we had to use @22
  
- 
+ step 5
+ - added an array to store people and an IBOutlet for the tableView so we can reload it 
+ - updated the refreshDisplay method we created in the previous step to pull from parse the information we had created within the "Person" section - the if methods check to see if there is an error first (always check to see if there is an error with parse - we may have hit the limit, parse may be taking too long, etc.) - if there is no error, then we set the people array we created equal to what came back from parse, so the people array will be an array of dictionaries housing the people information
+ - we then updated the cellForRowAtIndexPath to get info from the people array, change it to a PFObject and then set whatever you want equal to that  - check notes in .m about a different want to get objectForKey
  
  
  
