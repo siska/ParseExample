@@ -25,7 +25,9 @@
  - embedded VC in Nav Controller and changed name to PersonVC
  - we also had to go to parse.com, create a new project app, and get the application ID and the client key - within the appDelegate.m we imported the parse.h file and then in didFinishLaunchingWithOptions - we added a method on parse that set the application id and the client key
 
-
+step 3
+ - within storyboard, added the table view and table view proto cell - set up the delegates (datasource and delegate) and set the proto cell identifier to PersonCell - then added the Add bar button item and added an IBAction for that in PersonVC.m
+ - also in Person.m, we added the delegate and datasource within <> and then added the required methods for table view - number of rows and cell for row at index path
 
  */
 

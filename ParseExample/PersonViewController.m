@@ -8,7 +8,7 @@
 
 #import "PersonViewController.h"
 
-@interface PersonViewController ()
+@interface PersonViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -19,9 +19,23 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)onAddPersonButtonTapped:(id)sender {
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell"];
+    return cell;
+}
 @end
