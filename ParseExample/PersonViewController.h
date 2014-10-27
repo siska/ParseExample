@@ -28,6 +28,17 @@
 step 3
  - within storyboard, added the table view and table view proto cell - set up the delegates (datasource and delegate) and set the proto cell identifier to PersonCell - then added the Add bar button item and added an IBAction for that in PersonVC.m
  - also in Person.m, we added the delegate and datasource within <> and then added the required methods for table view - number of rows and cell for row at index path
+ 
+ step 4
+ - we imported the Parse/Parse.h into the PersonVC
+ - we then implemented within onAddPersonButtonTapped the ability to save something to our Parse account - when i ran the app and then clicked the add person button, it added a person with the info I said in the app to the parse account - a few important things with that - seems like we could run it a million times and get a million of the same people - we couldn't find a way to check to see if something was unique automatically within parse - may be something that has to be checked by the database or may have to research that a bit more to see if it's possible through parse
+ - it will then refresh the display, which we called, created, but haven't put anything in yet
+ 
+ 
+ 
+ 
+ 
+
 
  */
 
